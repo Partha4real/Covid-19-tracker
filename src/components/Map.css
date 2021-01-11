@@ -1,0 +1,36 @@
+.map {
+    height: 500px;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 20px;
+    margin-top: 16px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.map .leaflet-container {
+    height: 100%
+}
+
+.mapPopup-name {
+    font-size: 20px;
+    font-weight: bold;
+    columns: #555;
+}
+.mapPopup-flag {
+    height: 80px;
+    width: 100%;
+    background-size: cover;
+    border-radius: 8px;
+    margin-bottom: 5px;
+
+}
+.mapPopup-flag img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.mapPopup-cases, .mapPopup-confirned, .mapPopup-recovered, .mapPopup-deaths {
+    font-size: 13px;
+    margin-top: 5px;
+}
+
