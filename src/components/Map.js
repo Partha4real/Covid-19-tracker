@@ -1,18 +1,19 @@
 import React from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import './Map.css';
-import { MapContainer as LeafLetMap, TileLayer } from 'react-leaflet';
 import {showDataOnMap} from '../utils/util';
 
 function Map({ countries, casesType, center, zoom }) {
+  // console.log("MAP casetype >>", casesType)
     return (
       <div className="map">
-        <LeafLetMap center={center} zoom={zoom}>
+        <MapContainer center={center} zoom={zoom}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
           {showDataOnMap(countries, casesType)}
-        </LeafLetMap>
+        </MapContainer>
       </div>
     );
   }

@@ -1,22 +1,24 @@
 import {Circle, Popup} from 'react-leaflet';
 import numeral from 'numeral';
 
-const casesTypesColours = {
+const casesTypesColors = {
     cases: {
-        hex: "#CC1034",
+        hex: "red",
         multiplier: 400, //size of circle
     },
     recovered: {
-        hex: "#7dd71d",
+        hex: "orange",
         multiplier: 600,
     },
-    recovered: {
-        hex: "#fb4443",
+    deaths: {
+        hex: "green",
         multiplier: 1000,
     },
 };
 
-// sortind data base on cases
+console.log("color>>>>>>>>",casesTypesColors.cases.hex);
+
+// sorting data base on cases
 export const sortData = (data) => {
     const sortedData = [...data];
 
@@ -36,22 +38,23 @@ export const buildChartData = (data, casesTypes) => {
             }
             chartData.push(newDataPoint);
         }
-        lastDataPoint= data['cases'][date];
+        lastDataPoint= data[casesTypes][date];
     };
     return chartData;
 };
 
+// covid stats prettyfier
 export const prettyPrintStat = (stat) => stat ? `${numeral(stat).format("0.0a")}` : "+0";
 
 // circle on Map
-export const showDataOnMap = (data, casesTypes='cases') => 
-    data.map((country) => (
+export const showDataOnMap = (data, casesTypes) => 
+data.map((country) => (
         <Circle
             center={[country.countryInfo.lat, country.countryInfo.long]}
+            color={casesTypesColors[casesTypes].hex}
+            fillColor={casesTypesColors[casesTypes].hex}
             fillOpacity={0.4}
-            color={casesTypesColours[casesTypes].hex}
-            fillcolor={casesTypesColours[casesTypes].hex}
-            radius={Math.sqrt(country[casesTypes]) * casesTypesColours[casesTypes].multiplier}
+            radius={Math.sqrt(country[casesTypes]) * casesTypesColors[casesTypes].multiplier}
         >
             <Popup>
                 <div className="mapPopup-container">
