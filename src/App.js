@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import InfoBox from './components/InfoBox';
 import Map from './components/Map';
 import Table from './components/Table';
+import {sortData} from './utils/util';
+import LineGraph from './components/LineGraph';
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -32,7 +34,10 @@ function App() {
               flag: country.countryInfo.flag
             }
           ));
-          setTabledata(data);
+
+          // sorting data bases on cases
+          const sortedData = sortData(data)
+          setTabledata(sortedData);
           setCountries(countries);
         });
     };
@@ -92,6 +97,10 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
+          <h3>Worlswide New Cases</h3>
+
+          {/* LineGraph Container */}
+          <LineGraph />
         </CardContent>
       </Card>
       
